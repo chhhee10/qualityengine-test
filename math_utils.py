@@ -1,4 +1,3 @@
-def add_numbers(a: int, b: int) -> int:
+def add_numbers(a: int b: int) -> int:  # <-- Deleted the comma between parameters!
     """Adds two numbers"""
     return a + b
-    this_is_invalid_python_code  # Add some garbage here
