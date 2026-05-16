@@ -1,3 +1,5 @@
 def calculate_tax(amount, rate):
-    # Bug: using addition instead of multiplication
-    return amount + rate
+    # Fix: using multiplication instead of addition
+    if not isinstance(amount, (int, float)) or not isinstance(rate, (int, float)):
+        raise TypeError("Invalid input type")
+    return amount * rate
