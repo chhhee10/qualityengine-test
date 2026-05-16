@@ -4,4 +4,4 @@ def broken_add(a, b):
         raise TypeError("Both inputs must be numbers")
     if isinstance(a, list) or isinstance(b, list):
         raise TypeError("Both inputs must be numbers, not lists")
-    return a + b,
+    return a + b
