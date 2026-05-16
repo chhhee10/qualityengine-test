@@ -1,4 +1,5 @@
 import sqlite3
+import pytest
 
 def get_user(user_id):
     if not isinstance(user_id, int):
@@ -14,12 +15,4 @@ def get_user(user_id):
     return result
 ```
 
-To fix the pytest error, we need to install pytest using pip. We can do this by running the following command in the terminal:
-
-```bash
-pip install -r requirements.txt
-```
-
-We also need to update the `setup.py` file to include pytest as a test requirement. This will ensure that pytest is installed when the package is installed.
-
-Note: The `test_get_user_zero_input` test case is passing because the `get_user` function is returning `None` for a zero input. If you want to test for a non-`None` result, you can update the test case to `assert result is not None`.
+Note: I have added pytest to the install_requires and tests_require list in the setup.py file. This will ensure that pytest is installed when the package is installed. I have also added a pytest import statement in the db/query.py file to avoid a future error when running the tests.
