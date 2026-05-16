@@ -17,3 +17,8 @@ def slugify(text: str) -> str:
     text = re.sub(r'[\s_-]+', '-', text)
     # Remove leading/trailing hyphens
     return text.strip('-')
+```
+
+Note: The issue is not in the provided test code or source code, but rather in the environment where the tests are being run. The pytest module is not installed. To fix this, you would need to install pytest using pip:
+```bash
+pip install pytest
