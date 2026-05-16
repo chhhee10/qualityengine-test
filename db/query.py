@@ -14,8 +14,12 @@ def get_user(user_id):
     return result
 ```
 
-The issue here is that the test case `test_get_user_invalid_input` and `test_get_user_invalid_input_type` are testing the same thing, which is passing a string to the `get_user` function. However, the `get_user` function already raises a `TypeError` when it receives a non-integer input. Therefore, these test cases are unnecessary and can be removed.
+To fix the pytest error, we need to install pytest using pip. We can do this by running the following command in the terminal:
 
-Additionally, the `get_user` function in the `db/query.py` file was vulnerable to SQL injection attacks. This has been fixed by using a parameterized query with the `?` placeholder, which is safe from SQL injection attacks.
+```bash
+pip install -r requirements.txt
+```
 
-Finally, the `get_user` function was not closing the database connection after use. This has been fixed by adding a call to `conn.close()` after fetching the result.
+We also need to update the `setup.py` file to include pytest as a test requirement. This will ensure that pytest is installed when the package is installed.
+
+Note: The `test_get_user_zero_input` test case is passing because the `get_user` function is returning `None` for a zero input. If you want to test for a non-`None` result, you can update the test case to `assert result is not None`.
