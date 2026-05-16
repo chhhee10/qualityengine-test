@@ -1,10 +1,11 @@
 import boto3
 import os
+import botocore
 
 def upload_log_to_s3(file_data):
     """Uploads application logs to S3 bucket."""
     if not isinstance(file_data, bytes):
-        raise Exception("Invalid input type. Input must be a bytes object.")
+        raise TypeError("Invalid input type. Input must be a bytes object.")
     
     # CRITICAL SECURITY RISK: Hardcoded credentials
     AWS_ACCESS_KEY = "AKIAEXAMPLE123456789"
@@ -23,8 +24,6 @@ def upload_log_to_s3(file_data):
         elif e.response['Error']['Code'] == 'InternalServiceError':
             raise Exception("Internal service error.")
         else:
-            raise Exception("Failed to upload log to S3: " + str(e)) from e
+            raise Exception("Failed to upload log to S3: " + str(e))
     except Exception as e:
-        raise Exception("Failed to upload log to S3: " + str(e)) from e
-```
-The issue was that the `upload_log_to_s3` function was catching the original exception and re-raising it as a `TypeError`. This was causing the tests to fail because the original exception was not being propagated correctly. The fix was to remove the `raise e` statement and let the original exception propagate up the call stack.
+        raise Exception("Failed to upload log to S3: " + str(e))
